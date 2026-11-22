@@ -13,7 +13,7 @@ import os
 load_dotenv()  # still works locally with a .env file
 
 try:
-    os.environ["OPENAI_API_KEY"]=os.getenv("OPENAI_API_KEY")"""
+    os.environ["OPENAI_API_KEY"]=os.getenv("OPENAI_API_KEY")
 except Exception:
     pass 
 
@@ -42,9 +42,7 @@ def build_retriever(video_id: str):
 
 def build_chain(retriever):
     prompt = PromptTemplate(
-        template="""You are a helpful assistant.
-      Answer ONLY from the provided transcript context.
-      If the context is insufficient, just say you don not know. {context} Question: {question}""",
+        template="""You are a helpful assistant.Answer ONLY from the provided transcript context. If the context is insufficient, just say you don not know. {context} Question: {question} """,
     input_variables=["context", "question"]
     )
     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.2)
