@@ -42,15 +42,10 @@ def build_retriever(video_id: str):
 
 def build_chain(retriever):
     prompt = PromptTemplate(
-        template="""
-      You are a helpful assistant.
+        template="""You are a helpful assistant.
       Answer ONLY from the provided transcript context.
-      If the context is insufficient, just say you don't know.
-
-      {context}
-      Question: {question}
-    """,
-        input_variables=["context", "question"],
+      If the context is insufficient, just say you don't know. {context} Question: {question}""",
+    input_variables=["context", "question"]
     )
     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.2)
 
